@@ -1,0 +1,166 @@
+[
+  {
+    "name": "Egypt",
+    "currency": "EGY"
+  },
+  {
+    "name": "United States of America",
+    "currency": "USA"
+  },
+  {
+    "name": "United Arab Emirates",
+    "currency": "UAE"
+  },
+  {
+    "name": "Bangladesh",
+    "currency": "BDT"
+  },
+
+  {
+    "name": "Bosnia and Herzegovina",
+    "currency": "BAM"
+  },
+  {
+    "name": "Barbados",
+    "currency": "BBD"
+  },
+  {
+    "name": "Wallis and Futuna",
+    "currency": "XPF"
+  },
+
+  {
+    "name": "Brunei",
+    "currency": "BND"
+  },
+  {
+    "name": "Bolivia",
+    "currency": "BOB"
+  },
+  {
+    "name": "Bahrain",
+    "currency": "BHD"
+  },
+
+  {
+    "name": "Benin",
+    "currency": "XOF"
+  },
+  {
+    "name": "Bhutan",
+    "currency": "BTN"
+  },
+  {
+    "name": "Jamaica",
+    "currency": "JMD"
+  },
+  {
+    "name": "Bouvet Island",
+    "currency": "NOK"
+  },
+
+  {
+    "name": "Bonaire, Saint Eustatius and Saba ",
+    "currency": "USD"
+  },
+  {
+    "name": "Brazil",
+    "currency": "BRL"
+  },
+  {
+    "name": "Bahamas",
+    "currency": "BSD"
+  },
+  {
+    "name": "Jersey",
+    "currency": "GBP"
+  },
+  {
+    "name": "Belarus",
+    "currency": "BYR"
+  },
+
+  {
+    "name": "Russia",
+    "currency": "RUB"
+  },
+  {
+    "name": "Rwanda",
+    "currency": "RWF"
+  },
+  {
+    "name": "Serbia",
+    "currency": "RSD"
+  },
+
+  {
+    "name": "Turkmenistan",
+    "currency": "TMT"
+  },
+  {
+    "name": "Tajikistan",
+    "currency": "TJS"
+  },
+  {
+    "name": "Romania",
+    "currency": "RON"
+  },
+
+  {
+    "name": "South Georgia and the South Sandwich Islands",
+    "currency": "GBP"
+  },
+  {
+    "name": "Greece",
+    "currency": "EUR"
+  },
+  {
+    "name": "Japan",
+    "currency": "JPY"
+  },
+
+  {
+    "name": "United Kingdom",
+    "currency": "GBP"
+  },
+  {
+    "name": "Gabon",
+    "currency": "XAF"
+  },
+  {
+    "name": "El Salvador",
+    "currency": "USD"
+  },
+  {
+    "name": "Guinea",
+    "currency": "GNF"
+  },
+  {
+    "name": "Gambia",
+    "currency": "GMD"
+  },
+  {
+    "name": "Greenland",
+    "currency": "DKK"
+  },
+  {
+    "name": "Ghana",
+    "currency": "GHS"
+  },
+  {
+    "name": "Oman",
+    "currency": "OMR"
+  },
+  {
+    "name": "Tunisia",
+    "currency": "TND"
+  },
+  {
+    "name": "Jordan",
+    "currency": "JOD"
+  },
+  {
+    "name": "Croatia",
+    "currency": "HRK"
+  }
+]
