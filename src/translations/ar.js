@@ -45,4 +45,8 @@ export default {
   for_him: 'له',
 
   Notifications: 'التنبيهات',
+
+  specifications: 'المواصفات',
+  you_may: 'ربما يعجبك أيضا',
+  rating: 'التقييم',
 };

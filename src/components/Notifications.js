@@ -70,11 +70,11 @@ class Notifications extends Component {
 
     //Animated
     const scale = scrollEvent.interpolate({
-      inputRange: [-1, 0, hp(12) * index, hp(12) * (index + 2)],
+      inputRange: [-1, 0, hp(13) * index, hp(13) * (index + 2)],
       outputRange: [1, 1, 1, 0],
     });
     const opacity = scrollEvent.interpolate({
-      inputRange: [-1, 0, hp(12) * index, hp(12) * (index + 1)],
+      inputRange: [-1, 0, hp(13) * index, hp(13) * (index + 1)],
       outputRange: [1, 1, 1, 0],
     });
 
@@ -82,7 +82,7 @@ class Notifications extends Component {
       <Animated.View
         style={[
           {
-            marginBottom: hp(2),
+            marginVertical: hp(1.5),
             backgroundColor: colorSchemeText,
             borderRadius: wp(4),
             flexDirection: 'row',
@@ -121,7 +121,7 @@ class Notifications extends Component {
   };
 
   render() {
-    const {notifications, animation, scrollEvent} = this.state;
+    const {notifications, scrollEvent} = this.state;
 
     return (
       <SafeAreaView style={{backgroundColor: colorSchemeView, flex: 1}}>

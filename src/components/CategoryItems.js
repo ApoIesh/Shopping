@@ -4,34 +4,22 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
-  Image,
-  Animated,
   FlatList,
   ImageBackground,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import {colorSchemeText, colorSchemeView} from '../App';
 import {L} from '../config';
-import {navigate, reset} from '../NavigationActions';
-
-import {Main_Button, Main_Inout, Main_Picker} from './Assets/common';
+import {navigate} from '../NavigationActions';
 import Icon from './Assets/common/Icon';
-
-import countries from './Assets/JSON/countries.json';
 import ownApp from './Assets/style/ownApp';
 import startStyles, {
-  black_color,
-  fontLight,
-  fontRegular,
+  gold_color,
   gray_color,
   hp,
   light_gray_color,
-  Primary_color,
-  white_color,
   wp,
-  Yellow_color,
 } from './Assets/style/startStyles';
-import {Animated_Carousel} from './Assets/common/Animated_Carousel';
-import Snap_Carousel from './Assets/common/Snap_Carousel';
 import StarRating from 'react-native-star-rating';
 
 class CategoryItems extends Component {
@@ -118,25 +106,36 @@ class CategoryItems extends Component {
     };
   }
   renderItems = ({item, index}) => {
-    const {DATA_IMAGES} = this.state;
     const itemName =
       item?.name?.length >= 45 ? item?.name?.slice('', 45) + '...' : item?.name;
 
     return (
-      <View style={ownApp.viewItem}>
-        <TouchableOpacity>
-          <View style={[ownApp.viewItems, {backgroundColor: colorSchemeView}]}>
+      <View style={{alignItems: 'center', marginEnd: wp(2.5)}}>
+        <TouchableWithoutFeedback onPress={() => navigate('Item')}>
+          <View
+            style={[
+              {
+                flexDirection: 'column',
+
+                borderWidth: wp(0.2),
+                borderRadius: wp(2),
+                borderColor: light_gray_color,
+              },
+              {backgroundColor: colorSchemeView},
+            ]}
+          >
             <ImageBackground
-              borderRadius={wp(2)}
+              borderTopLeftRadius={wp(2)}
+              borderTopRightRadius={wp(2)}
               source={{uri: item.image}}
               resizeMode={'contain'}
-              style={ownApp.imageItems}
+              style={{height: hp(20)}}
             />
             <View style={{paddingHorizontal: wp(2)}}>
               <Text
                 style={[
                   startStyles.regular_12_white,
-                  ownApp.nameItems,
+                  {marginVertical: wp(1), textAlign: 'left', maxWidth: wp(40)},
                   {color: colorSchemeText},
                 ]}
               >
@@ -144,31 +143,35 @@ class CategoryItems extends Component {
               </Text>
 
               <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity>
-                  <View style={ownApp.starsView}>
-                    <StarRating
-                      starStyle={{color: colorSchemeText}}
-                      starSize={wp(3.5)}
-                      containerStyle={{width: wp(22)}}
-                      disabled={true}
-                      maxStars={5}
-                      rating={item.rating}
-                    />
-                    <Text
-                      style={[
-                        startStyles.regular_12_gray,
-                        {color: colorSchemeText, marginStart: wp(2)},
-                      ]}
-                    >
-                      {item.reviews}
-                    </Text>
-                    <Icon
-                      name={L.backIcon}
-                      color={colorSchemeText}
-                      size={wp(3.5)}
-                    />
-                  </View>
-                </TouchableOpacity>
+                <View
+                  style={{
+                    marginVertical: wp(1),
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}
+                >
+                  <StarRating
+                    fullStarColor={gold_color}
+                    starSize={wp(3.5)}
+                    containerStyle={{width: wp(22)}}
+                    disabled={true}
+                    maxStars={5}
+                    rating={item.rating}
+                  />
+                  <Text
+                    style={[
+                      startStyles.regular_12_gray,
+                      {color: colorSchemeText, marginStart: wp(2)},
+                    ]}
+                  >
+                    {item.reviews}
+                  </Text>
+                  <Icon
+                    name={L.backIcon}
+                    color={colorSchemeText}
+                    size={wp(3.5)}
+                  />
+                </View>
               </View>
 
               <View style={ownApp.price_sec}>
@@ -228,59 +231,249 @@ class CategoryItems extends Component {
               </View>
             </View>
           </View>
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
       </View>
     );
   };
 
   render() {
-    const {search, DATA} = this.state;
+    const {DATA} = this.state;
     return (
-      <View style={{backgroundColor: colorSchemeView, flex: 1}}>
-        <View style={startStyles.view_96}>
-          <View style={ownApp.search_sec}>
-            <TouchableOpacity>
-              <Icon
-                type={'AntDesign'}
-                name={'shoppingcart'}
-                size={wp(6.5)}
-                color={colorSchemeText}
-                style={{margin: wp(1)}}
-              />
-            </TouchableOpacity>
-
-            <View style={{flex: 1}}>
-              <Main_Inout
-                value={search}
-                onChangeText={search => this.setState({search})}
-                backgroundColor={colorSchemeText}
-                placeholder={L.search}
-                borderRadius={wp(3)}
-                height={hp(5)}
-                placeholderTextColor={gray_color}
-                color={colorSchemeView}
-                left={
-                  <Icon
-                    type={'Feather'}
-                    name={'search'}
-                    size={wp(3.5)}
-                    color={colorSchemeView}
-                    style={{marginEnd: wp(1)}}
-                  />
-                }
-              />
+      <View style={{backgroundColor: colorSchemeView}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{paddingVertical: hp(0.5)}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(4),
+                marginVertical: wp(2),
+              }}
+            >
+              <Text
+                style={[
+                  startStyles.bold_16_gray,
+                  {
+                    color: colorSchemeText,
+                  },
+                ]}
+              >
+                Top Offers
+              </Text>
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={startStyles.regular_12_gray}>{L.see_more}</Text>
+                  <Icon name={L.backIcon} size={wp(4)} color={gray_color} />
+                </View>
+              </TouchableOpacity>
             </View>
+            <FlatList
+              data={DATA}
+              horizontal={true}
+              style={{paddingStart: wp(2.5)}}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={this.renderItems}
+            />
           </View>
-        </View>
 
-        <FlatList
-          data={DATA}
-          // style={{paddingStart: wp(2)}}
-          keyExtractor={(item, index) => index.toString()}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-          renderItem={this.renderItems}
-        />
+          <View style={{paddingVertical: hp(0.5)}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(4),
+                marginVertical: wp(2),
+              }}
+            >
+              <Text
+                style={[
+                  startStyles.bold_16_gray,
+                  {
+                    color: colorSchemeText,
+                    marginVertical: wp(1),
+                  },
+                ]}
+              >
+                Day Use
+              </Text>
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={startStyles.regular_12_gray}>{L.see_more}</Text>
+                  <Icon name={L.backIcon} size={wp(4)} color={gray_color} />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={DATA}
+              horizontal={true}
+              style={{paddingStart: wp(2.5)}}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={this.renderItems}
+            />
+          </View>
+
+          <View style={{paddingVertical: hp(0.5)}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(4),
+                marginVertical: wp(2),
+              }}
+            >
+              <Text
+                style={[
+                  startStyles.bold_16_gray,
+                  {
+                    color: colorSchemeText,
+                    marginVertical: wp(1),
+                  },
+                ]}
+              >
+                Day Use
+              </Text>
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={startStyles.regular_12_gray}>{L.see_more}</Text>
+                  <Icon name={L.backIcon} size={wp(4)} color={gray_color} />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={DATA}
+              horizontal={true}
+              style={{paddingStart: wp(2.5)}}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={this.renderItems}
+            />
+          </View>
+
+          <View style={{paddingVertical: hp(0.5)}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(4),
+                marginVertical: wp(2),
+              }}
+            >
+              <Text
+                style={[
+                  startStyles.bold_16_gray,
+                  {
+                    color: colorSchemeText,
+                    marginVertical: wp(1),
+                  },
+                ]}
+              >
+                Day Use
+              </Text>
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={startStyles.regular_12_gray}>{L.see_more}</Text>
+                  <Icon name={L.backIcon} size={wp(4)} color={gray_color} />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={DATA}
+              horizontal={true}
+              style={{paddingStart: wp(2.5)}}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={this.renderItems}
+            />
+          </View>
+
+          <View style={{paddingVertical: hp(0.5)}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(4),
+                marginVertical: wp(2),
+              }}
+            >
+              <Text
+                style={[
+                  startStyles.bold_16_gray,
+                  {
+                    color: colorSchemeText,
+                    marginVertical: wp(1),
+                  },
+                ]}
+              >
+                Day Use
+              </Text>
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={startStyles.regular_12_gray}>{L.see_more}</Text>
+                  <Icon name={L.backIcon} size={wp(4)} color={gray_color} />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={DATA}
+              horizontal={true}
+              style={{paddingStart: wp(2.5)}}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={this.renderItems}
+            />
+          </View>
+
+          <View style={{paddingVertical: hp(0.5)}}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                marginHorizontal: wp(4),
+                marginVertical: wp(2),
+              }}
+            >
+              <Text
+                style={[
+                  startStyles.bold_16_gray,
+                  {
+                    color: colorSchemeText,
+                    marginVertical: wp(1),
+                  },
+                ]}
+              >
+                Day Use
+              </Text>
+              <TouchableOpacity>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                  <Text style={startStyles.regular_12_gray}>{L.see_more}</Text>
+                  <Icon name={L.backIcon} size={wp(4)} color={gray_color} />
+                </View>
+              </TouchableOpacity>
+            </View>
+            <FlatList
+              data={DATA}
+              horizontal={true}
+              style={{paddingStart: wp(2.5)}}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => index.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={this.renderItems}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }

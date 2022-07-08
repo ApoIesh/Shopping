@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import {
   widthPercentageToDP,
-  heightPercentageToDP,
+  heightPercentageToDP
 } from 'react-native-responsive-screen';
 
 export const wp = widthPercentageToDP;
@@ -15,27 +15,22 @@ export const gray_color = '#8b8989';
 export const light_gray_color = '#cccc';
 export const Blue_color  ="#0000FF"
 export const Red_color = "#FF0000"
-export const Green_color = "#00FF00"
+export const Green_color = "#00aa90"
 export const Yellow_color = "#FFFF00"
 export const Purple_color="#800080"
 export const gold_color="#FFD700"
 
-
-//MAIN_STYLES
-export const border_Color = '#cccc';
+//MAIN_COLORS
 export const placeholder_color = '#cccc';
 export const button_color = '#ffebcc';
-
-//APP COLORS
-export const Primary_color = '#5484';
-export const Secondary_color = '#a88788';
-
 export const icons_color = '#353434';
 export const content_color = '#8b8989';
 export const border_color = '#e8e8e8';
 export const text_input_color = '#000';
 
-
+//APP COLORS
+export const Primary_color = '#5484';
+export const Secondary_color = '#a88788';
 
 
 
@@ -46,7 +41,9 @@ export const fontBold = 'Proxima Nova Bold';
 export const fontExtrabold = 'Proxima Nova Extrabold';
 
 const startStyles = StyleSheet.create({
+  
   //STANDERED VIEWS
+  view_100: { width: wp(100), alignSelf: 'center' },
   view_98: { width: wp(98), alignSelf: 'center' },
   view_96: { width: wp(96), alignSelf: 'center' },
   view_92: { width: wp(92), alignSelf: 'center' },
@@ -167,7 +164,8 @@ const startStyles = StyleSheet.create({
   customizedText_3: { color: white_color, fontWeight: '100',fontSize: wp(6), },
   customizedText_4: { color: white_color, fontWeight: 'bold', fontSize: wp(6), },
 
-  line: { borderWidth: 0.2, borderColor: light_gray_color, },
+  //customizedView
+  line: { borderWidth: 0.2, borderColor: border_color, },
   sec_log_text: { fontFamily: fontBold, fontSize: wp(5), color: black_color, },
 });
 export default startStyles;

@@ -1,45 +1,21 @@
 import React, {Component} from 'react';
 import {
-  StatusBar,
   TouchableOpacity,
   View,
   Text,
   Image,
-  ImageBackground,
   ScrollView,
   FlatList,
   Animated,
   TouchableWithoutFeedback,
 } from 'react-native';
 import {L} from '../config';
-import startStyles, {
-  black_color,
-  gray_color,
-  hp,
-  light_gray_color,
-  Primary_color,
-  Secondary_color,
-  white_color,
-  wp,
-  fontLight,
-  fontRegular,
-  Yellow_color,
-  Blue_color,
-} from './Assets/style/startStyles';
-
 import {colorSchemeText, colorSchemeView} from '../App';
-import {navigate, reset} from '../NavigationActions';
-
-import {Main_Button, Main_Inout, Main_Picker} from './Assets/common';
+import startStyles, {hp, wp} from './Assets/style/startStyles';
+import ownApp from './Assets/style/ownApp';
 import Icon from './Assets/common/Icon';
 
-import ownApp from './Assets/style/ownApp';
-
-import {Animated_Carousel} from './Assets/common/Animated_Carousel';
-import Snap_Carousel from './Assets/common/Snap_Carousel';
-import StarRating from 'react-native-star-rating';
-
-class Category extends Component {
+class Categories extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,7 +24,7 @@ class Category extends Component {
       footwearAnimated: new Animated.Value(wp(0)),
       brandesAnimated: new Animated.Value(wp(0)),
       splashImage:
-        'https://k.nooncdn.com/cms/pages/20220601/1dd81d8cd84d262234e1fd8a3799bf0a/ar_web-brands.gif',
+        'https://k.nooncdn.com/cms/pages/20220706/3354f3840c51d8808c8bf89bc15d9944/ar_dk_eg-hero-banner-01.gif',
       sec_category: 0,
       for_him: false,
       footwear: false,
@@ -140,9 +116,7 @@ class Category extends Component {
     return (
       <View>
         {index === 0 ? (
-          <TouchableWithoutFeedback
-            onPress={() => this.setState({sec_category: index})}
-          >
+          <TouchableWithoutFeedback>
             <View
               style={{
                 ...ownApp.categorySelect,
@@ -202,24 +176,8 @@ class Category extends Component {
 
   itemsInCategory = ({item, index}) => {
     return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        style={{
-          width: wp(17),
-          marginHorizontal: wp(3),
-          alignItems: 'center',
-          marginVertical: wp(3),
-        }}
-      >
-        <Image
-          source={{uri: item.image}}
-          style={{
-            width: wp(17),
-            height: wp(17),
-            resizeMode: 'cover',
-            borderRadius: wp(3),
-          }}
-        />
+      <TouchableOpacity activeOpacity={0.8} style={ownApp.itemsCategoryView}>
+        <Image source={{uri: item.image}} style={ownApp.imageItemCategory} />
         <Text
           style={[
             startStyles.regular_12_gray,
@@ -232,70 +190,103 @@ class Category extends Component {
     );
   };
 
-  for_himPress = () => {
-    const {for_himAnimation, for_him} = this.state;
-    if (for_him === false) {
-      this.setState({for_him: !for_him}),
-        Animated.timing(for_himAnimation, {
-          toValue: wp(60),
-          duration: 700,
-          useNativeDriver: false,
-        }).start();
-    } else {
-      this.setState({for_him: !for_him}),
-        Animated.timing(for_himAnimation, {
-          toValue: wp(0),
-          duration: 500,
-          useNativeDriver: false,
-        }).start();
-    }
-  };
-
-  footwearPress = () => {
-    const {footwearAnimated, footwear} = this.state;
-    if (footwear === false) {
-      this.setState({footwear: !footwear}),
-        Animated.timing(footwearAnimated, {
-          toValue: wp(60),
-          duration: 700,
-          useNativeDriver: false,
-        }).start();
-    } else {
-      this.setState({footwear: !footwear}),
+  handelPress = res => {
+    const {
+      for_himAnimation,
+      for_him,
+      footwearAnimated,
+      footwear,
+      brandesAnimated,
+      brandes,
+    } = this.state;
+    if (res === 1) {
+      if (for_him == false) {
+        this.setState({for_him: true, footwear: false, brandes: false}),
+          Animated.timing(for_himAnimation, {
+            toValue: wp(87),
+            duration: 700,
+            useNativeDriver: false,
+          }).start();
         Animated.timing(footwearAnimated, {
           toValue: wp(0),
           duration: 500,
           useNativeDriver: false,
         }).start();
-    }
-  };
-  brandesPress = () => {
-    const {brandes, brandesAnimated} = this.state;
-    if (brandes === false) {
-      this.setState({brandes: !brandes}),
-        Animated.timing(brandesAnimated, {
-          toValue: wp(60),
-          duration: 700,
-          useNativeDriver: false,
-        }).start();
-    } else {
-      this.setState({brandes: !brandes}),
         Animated.timing(brandesAnimated, {
           toValue: wp(0),
           duration: 500,
           useNativeDriver: false,
         }).start();
+      } else {
+        this.setState({for_him: false}),
+          Animated.timing(for_himAnimation, {
+            toValue: wp(0),
+            duration: 500,
+            useNativeDriver: false,
+          }).start();
+      }
+    }
+    if (res === 2) {
+      if (footwear == false) {
+        this.setState({footwear: true, for_him: false, brandes: false}),
+          Animated.timing(footwearAnimated, {
+            toValue: wp(87),
+            duration: 700,
+            useNativeDriver: false,
+          }).start();
+        Animated.timing(for_himAnimation, {
+          toValue: wp(0),
+          duration: 500,
+          useNativeDriver: false,
+        }).start();
+        Animated.timing(brandesAnimated, {
+          toValue: wp(0),
+          duration: 500,
+          useNativeDriver: false,
+        }).start();
+      } else {
+        this.setState({footwear: false}),
+          Animated.timing(footwearAnimated, {
+            toValue: wp(0),
+            duration: 500,
+            useNativeDriver: false,
+          }).start();
+      }
+    }
+    if (res === 3) {
+      if (brandes == false) {
+        this.setState({brandes: true, for_him: false, footwear: false}),
+          Animated.timing(brandesAnimated, {
+            toValue: wp(87),
+            duration: 700,
+            useNativeDriver: false,
+          }).start();
+        Animated.timing(for_himAnimation, {
+          toValue: wp(0),
+          duration: 500,
+          useNativeDriver: false,
+        }).start();
+        Animated.timing(footwearAnimated, {
+          toValue: wp(0),
+          duration: 500,
+          useNativeDriver: false,
+        }).start();
+      } else {
+        this.setState({brandes: false}),
+          Animated.timing(brandesAnimated, {
+            toValue: wp(0),
+            duration: 500,
+            useNativeDriver: false,
+          }).start();
+      }
     }
   };
 
   render() {
     const {
-      search,
-      sec_category,
       splashImage,
       DATA_CategoeyNames,
       DATA,
-
       for_him,
       for_himAnimation,
       footwear,
@@ -308,42 +299,6 @@ class Category extends Component {
 
     return (
       <View style={{backgroundColor: colorSchemeView, flex: 1}}>
-        <View style={startStyles.view_96}>
-          <View style={ownApp.search_sec}>
-            <TouchableOpacity>
-              <Icon
-                type={'AntDesign'}
-                name={'shoppingcart'}
-                size={wp(6.5)}
-                color={colorSchemeText}
-                style={{margin: wp(1)}}
-              />
-            </TouchableOpacity>
-
-            <View style={{flex: 1}}>
-              <Main_Inout
-                value={search}
-                onChangeText={search => this.setState({search})}
-                backgroundColor={colorSchemeText}
-                placeholder={L.search}
-                borderRadius={wp(3)}
-                height={hp(5)}
-                placeholderTextColor={gray_color}
-                color={colorSchemeView}
-                left={
-                  <Icon
-                    type={'Feather'}
-                    name={'search'}
-                    size={wp(3.5)}
-                    color={colorSchemeView}
-                    style={{marginEnd: wp(1)}}
-                  />
-                }
-              />
-            </View>
-          </View>
-        </View>
-
         <View style={{flexDirection: 'row'}}>
           <View style={[ownApp.title_sec, {backgroundColor: colorSchemeView}]}>
             <FlatList
@@ -378,7 +333,7 @@ class Category extends Component {
               <View style={[ownApp.itemsMenu, {borderColor: colorSchemeText}]}>
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  onPress={this.for_himPress}
+                  onPress={() => this.handelPress(1)}
                 >
                   <View style={ownApp.itemMenu}>
                     <Text
@@ -410,7 +365,7 @@ class Category extends Component {
               <View style={[ownApp.itemsMenu, {borderColor: colorSchemeText}]}>
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  onPress={this.footwearPress}
+                  onPress={() => this.handelPress(2)}
                 >
                   <View style={ownApp.itemMenu}>
                     <Text
@@ -442,7 +397,7 @@ class Category extends Component {
               <View style={[ownApp.itemsMenu, {borderColor: colorSchemeText}]}>
                 <TouchableOpacity
                   activeOpacity={0.7}
-                  onPress={this.brandesPress}
+                  onPress={() => this.handelPress(3)}
                 >
                   <View style={ownApp.itemMenu}>
                     <Text
@@ -478,4 +433,4 @@ class Category extends Component {
   }
 }
 
-export default Category;
+export default Categories;

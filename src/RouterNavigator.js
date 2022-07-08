@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 
-import {
+import startStyles, {
   black_color,
   gray_color,
   hp,
@@ -24,9 +24,12 @@ import SignUp from './components/SignUp';
 import Home from './components/Home';
 import VarifyCode from './components/VarifyCode';
 import Notifications from './components/Notifications';
-import Category from './components/Category';
+import Categories from './components/Categories';
 import CategoryItems from './components/CategoryItems';
 import Intro from './components/Intro';
+import {CustomHeader, Main_Inout} from './components/Assets/common';
+import Item from './components/Item';
+import Profile from './components/Profile';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,9 +49,24 @@ function TabComponent() {
         name={L.Home}
         component={Home}
         options={{
-          headerShown: false,
-          headerTitleAlign: 'center',
-          headerTintColor: colorSchemeText,
+          headerShown: true,
+          header: () => (
+            <View style={{backgroundColor: colorSchemeView}}>
+              <CustomHeader
+                left={
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Icon
+                      type={'AntDesign'}
+                      name={'shoppingcart'}
+                      size={wp(6.5)}
+                      color={colorSchemeText}
+                      style={{margin: wp(1)}}
+                    />
+                  </TouchableOpacity>
+                }
+              />
+            </View>
+          ),
           headerStyle: {backgroundColor: colorSchemeView},
           tabBarIcon: ({focused}) => (
             <Image
@@ -63,12 +81,26 @@ function TabComponent() {
       />
       <Tab.Screen
         name={L.category}
-        component={Category}
+        component={Categories}
         options={{
           headerShown: true,
-          headerTitleAlign: 'center',
-          headerTintColor: colorSchemeText,
-          headerStyle: {backgroundColor: colorSchemeView},
+          header: () => (
+            <View style={{backgroundColor: colorSchemeView}}>
+              <CustomHeader
+                left={
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Icon
+                      type={'AntDesign'}
+                      name={'shoppingcart'}
+                      size={wp(6.5)}
+                      color={colorSchemeText}
+                      style={{margin: wp(1)}}
+                    />
+                  </TouchableOpacity>
+                }
+              />
+            </View>
+          ),
           tabBarIcon: ({focused}) => (
             <Icon
               type={'Feather'}
@@ -81,16 +113,30 @@ function TabComponent() {
       />
 
       <Tab.Screen
+        name={'Profile'}
+        component={Profile}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({focused}) => (
+            <Image
+              source={require('./components/Assets/image/user.png')}
+              style={{
+                ...ownApp.tabBarImage,
+                tintColor: focused ? colorSchemeText : gray_color,
+              }}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
         name={L.Notifications}
         component={Notifications}
         options={{
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerTintColor: colorSchemeText,
-          headerStyle: {backgroundColor: colorSchemeView},
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <Image
-              source={require('./components/Assets/image/icon_awesome_bell.png')}
+              source={require('./components/Assets/image/notification.png')}
               style={{
                 ...ownApp.tabBarImage,
                 tintColor: focused ? colorSchemeText : gray_color,
@@ -106,9 +152,14 @@ function TabComponent() {
 export default function RouterNavigator() {
   return (
     <Stack.Navigator
-      // initialRouteName={'TabComponent'}
+      // initialRouteName={'Item'}
       screenOptions={{
         headerShown: false,
+        headerStyle: {
+          backgroundColor: colorSchemeView,
+          elevation: 0,
+          borderBottomWidth: 0,
+        },
       }}
     >
       <Stack.Screen
@@ -116,6 +167,9 @@ export default function RouterNavigator() {
         component={Intro}
         options={{headerShown: false}}
       />
+
+      <Stack.Screen name="TabComponent" component={TabComponent} />
+
       <Stack.Screen
         name="SignUp"
         component={SignUp}
@@ -143,41 +197,35 @@ export default function RouterNavigator() {
         component={CategoryItems}
         options={({navigation, route}) => ({
           headerShown: true,
-          headerStyle: {
-            backgroundColor: black_color,
-            elevation: 0,
-            borderBottomWidth: 0,
-            height: hp(9),
-          },
-          headerTintColor: white_color,
-          headerTitleAlign: 'center',
-          headerLeft: () => (
-            <View>
-              <Icon
-                size={wp(5)}
-                name={L.goIcon}
-                color={white_color}
-                onPress={() => navigation.goBack()}
+          headerShadowVisible: false,
+          header: () => (
+            <View style={{backgroundColor: colorSchemeView}}>
+              <CustomHeader
+                left={
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Icon
+                      // type={'AntDesign'}
+                      name={L.goIcon}
+                      size={wp(6.5)}
+                      color={colorSchemeText}
+                      style={{margin: wp(1)}}
+                    />
+                  </TouchableOpacity>
+                }
               />
             </View>
           ),
-          // headerRight: () => (
-          //   <View style={{flexDirection: 'row'}}>
-          //     <FontAwesome5
-          //       size={wp(5.5)}
-          //       name="shopping-bag"
-          //       color={white_color}
-          //       onPress={() => navigate(L('cart'))}
-          //     />
-          //     <View style={styles.notification_view}>
-          //       <Text style={styles.Regular_10pt_white}>1</Text>
-          //     </View>
-          //   </View>
-          // ),
         })}
       />
 
-      <Stack.Screen name="TabComponent" component={TabComponent} />
+      <Stack.Screen
+        name="Item"
+        component={Item}
+        options={({navigation, route}) => ({
+          headerShown: false,
+          headerShadowVisible: false,
+        })}
+      />
     </Stack.Navigator>
   );
 }

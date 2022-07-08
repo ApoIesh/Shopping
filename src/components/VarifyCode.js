@@ -14,6 +14,7 @@ import countries from './Assets/JSON/countries.json';
 import ownApp from './Assets/style/ownApp';
 import startStyles, {
   fontBold,
+  fontExtrabold,
   gray_color,
   hp,
   light_gray_color,
@@ -35,29 +36,27 @@ class VarifyCode extends Component {
     return (
       <View style={{flex: 1, backgroundColor: colorSchemeView}}>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={ownApp.welcomeView}>
+            <Text
+              style={[
+                startStyles.introSmall,
+                {color: colorSchemeText, marginVertical: hp(2)},
+              ]}
+            >
+              {'Shopping App'}
+            </Text>
+          </View>
           <Text
             style={[
               startStyles.extraBold_18_gray,
               {
                 color: colorSchemeText,
-                marginStart: wp(5),
-                marginTop: hp(5),
+                margin: hp(2),
               },
             ]}
           >
             {L.confirm_code}
           </Text>
-          <Image
-            source={require('./Assets/image/mska-removebg-preview.png')}
-            style={{
-              alignSelf: 'center',
-              width: wp(40),
-              height: wp(40),
-              resizeMode: 'contain',
-              marginVertical: hp(5),
-              tintColor: colorSchemeText,
-            }}
-          />
 
           <View style={startStyles.view_92}>
             <CodeInput
@@ -65,22 +64,21 @@ class VarifyCode extends Component {
               ref="refName"
               secureTextEntry={false}
               // compareWithCode="AsDW2"
-              activeColor="#151515"
-              inactiveColor="#ccc"
+              activeColor={colorSchemeText}
+              inactiveColor={gray_color}
               codeLength={4}
               autoFocus={false}
               ignoreCase={true}
               inputPosition="center"
-              size={wp(13)}
-              space={10}
+              size={wp(10)}
+              space={wp(4)}
               className={'border-b'}
               selectionColor="#161616"
-              // onFulfill={() => navigate('SignIn')}
+              onFulfill={() => navigate('SignIn')}
               containerStyle={{flexDirection: 'row'}}
               codeInputStyle={{
-                borderButton: 2,
                 fontSize: wp(4.5),
-                fontFamily: fontBold,
+                fontFamily: fontExtrabold,
               }}
             />
 

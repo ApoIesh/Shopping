@@ -22,7 +22,9 @@ import startStyles, {
   black_color,
   fontLight,
   fontRegular,
+  gold_color,
   gray_color,
+  Green_color,
   hp,
   light_gray_color,
   Primary_color,
@@ -33,6 +35,7 @@ import startStyles, {
 import {Animated_Carousel} from './Assets/common/Animated_Carousel';
 import Snap_Carousel from './Assets/common/Snap_Carousel';
 import StarRating from 'react-native-star-rating';
+import Data from './Assets/JSON/Data.json';
 
 class Home extends Component {
   constructor(props) {
@@ -118,56 +121,29 @@ class Home extends Component {
       ],
       DATA_IMAGES: [
         {
-          id: 0,
-          image:
-            'https://m.media-amazon.com/images/I/51CaGImXs7L._AC_UL320_.jpg',
-          title: 'Dahlia',
-        }, // https://unsplash.com/photos/Jup6QMQdLnM
-        {
           id: 1,
           image:
-            'https://m.media-amazon.com/images/I/51CaGImXs7L._AC_UL320_.jpg',
-          title: 'Sunflower',
-        }, // https://unsplash.com/photos/oO62CP-g1EA
+            'https://k.nooncdn.com/cms/pages/20220703/49182ac72b0fe5430e4db6edba14b7d4/en_dk_eg-cat-45.png',
+        },
         {
           id: 2,
-          image: 'https://images.unsplash.com/photo-1627522460108-215683bdc9f6',
-          title: 'Zinnia',
-        }, // https://unsplash.com/photos/gKMmJEvcyA8
+          image:
+            'https://k.nooncdn.com/cms/pages/20220703/49182ac72b0fe5430e4db6edba14b7d4/en_dk_eg-cat-43.png',
+        },
         {
           id: 3,
-          image: 'https://images.unsplash.com/photo-1587814213271-7a6625b76c33',
-          title: 'Tulip',
-        }, // https://unsplash.com/photos/N7zBDF1r7PM
+          image:
+            'https://k.nooncdn.com/cms/pages/20220703/49182ac72b0fe5430e4db6edba14b7d4/en_dk_eg-cat-46.png',
+        },
         {
           id: 4,
-          image: 'https://images.unsplash.com/photo-1588628566587-dbd176de94b4',
-          title: 'Chrysanthemum',
-        }, // https://unsplash.com/photos/GsGZJMK0bJc
+          image:
+            'https://k.nooncdn.com/cms/pages/20220703/49182ac72b0fe5430e4db6edba14b7d4/en_dk_eg-cat-41.png',
+        },
         {
           id: 5,
-          image: 'https://images.unsplash.com/photo-1501577316686-a5cbf6c1df7e',
-          title: 'Hydrangea',
-        }, // https://unsplash.com/photos/coIBOiWBPjk
-        {
-          title: 'data1',
           image:
-            'https://assets.website-files.com/5f204aba8e0f187e7fb85a87/5f210a533185e7434d9efcab_hero%20img.jpg',
-        },
-        {
-          title: 'data2',
-          image:
-            'https://www.whoa.in/201604-Whoa/10-alone-broken-image-mobile-wallpaper-hd-image.jpg',
-        },
-        {
-          title: 'data3',
-          image:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        },
-        {
-          title: 'data4',
-          image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTntlma5HASL0HAM-KiC01A-JX4MxKousAA6A&usqp=CAU',
+            'https://k.nooncdn.com/cms/pages/20220703/49182ac72b0fe5430e4db6edba14b7d4/en_dk_eg-cat-44.png',
         },
       ],
       category_data: [
@@ -249,19 +225,45 @@ class Home extends Component {
         {index === 0 ? (
           <Animated_Carousel
             data={DATA_IMAGES}
+            windowWidth={wp(45)}
             imagStyle={ownApp.styleCarouselItem}
           />
         ) : (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate('Item', item)}>
             <View
               style={[ownApp.viewItems, {backgroundColor: colorSchemeView}]}
             >
               <ImageBackground
-                borderRadius={wp(2)}
+                borderTopRightRadius={wp(2)}
+                borderTopLeftRadius={wp(2)}
                 source={{uri: item.image}}
                 resizeMode={'contain'}
                 style={ownApp.imageItems}
               />
+
+              {item.ratDiscount ? (
+                <View
+                  style={{
+                    backgroundColor: Green_color,
+                    position: 'absolute',
+                    alignSelf: 'flex-end',
+                    marginTop: wp(2.2),
+                    borderTopLeftRadius: wp(1.5),
+                    borderBottomLeftRadius: wp(1.5),
+                    paddingHorizontal: wp(1),
+                  }}
+                >
+                  <Text
+                    style={[
+                      startStyles.light_12_gray,
+                      {color: colorSchemeText},
+                    ]}
+                  >
+                    {item.ratDiscount}
+                  </Text>
+                </View>
+              ) : null}
+
               <View style={{paddingHorizontal: wp(2)}}>
                 <Text
                   style={[
@@ -274,31 +276,29 @@ class Home extends Component {
                 </Text>
 
                 <View style={{flexDirection: 'row'}}>
-                  <TouchableOpacity>
-                    <View style={ownApp.starsView}>
-                      <StarRating
-                        starStyle={{color: colorSchemeText}}
-                        starSize={wp(3.5)}
-                        containerStyle={{width: wp(22)}}
-                        disabled={true}
-                        maxStars={5}
-                        rating={item.rating}
-                      />
-                      <Text
-                        style={[
-                          startStyles.regular_12_gray,
-                          {color: colorSchemeText, marginStart: wp(2)},
-                        ]}
-                      >
-                        {item.reviews}
-                      </Text>
-                      <Icon
-                        name={L.backIcon}
-                        color={colorSchemeText}
-                        size={wp(3.5)}
-                      />
-                    </View>
-                  </TouchableOpacity>
+                  <View style={ownApp.starsView}>
+                    <StarRating
+                      fullStarColor={gold_color}
+                      starSize={wp(3.5)}
+                      containerStyle={{width: wp(22)}}
+                      disabled={true}
+                      maxStars={5}
+                      rating={item.rating}
+                    />
+                    <Text
+                      style={[
+                        startStyles.regular_12_gray,
+                        {color: colorSchemeText, marginStart: wp(2)},
+                      ]}
+                    >
+                      {item.reviews}
+                    </Text>
+                    <Icon
+                      name={L.backIcon}
+                      color={colorSchemeText}
+                      size={wp(3.5)}
+                    />
+                  </View>
                 </View>
 
                 <View style={ownApp.price_sec}>
@@ -319,9 +319,9 @@ class Home extends Component {
                       color: colorSchemeText,
                     }}
                   >
-                    {item.pound + '.' + item.piastre}
+                    {item.amount}
                   </Text>
-                  {item.discount === true ? (
+                  {item.priceAfterDiscount ? (
                     <Text
                       style={[
                         startStyles.light_9_black,
@@ -331,7 +331,7 @@ class Home extends Component {
                         },
                       ]}
                     >
-                      {item.priceAfterDiscount}
+                      {L.currency + ' ' + item.priceAfterDiscount}
                     </Text>
                   ) : null}
                 </View>
@@ -368,42 +368,6 @@ class Home extends Component {
     const {search, DATA, DATA_IMAGES, category_data} = this.state;
     return (
       <View style={{backgroundColor: colorSchemeView, flex: 1}}>
-        <View style={startStyles.view_96}>
-          <View style={ownApp.search_sec}>
-            <TouchableOpacity>
-              <Icon
-                type={'AntDesign'}
-                name={'shoppingcart'}
-                size={wp(6.5)}
-                color={colorSchemeText}
-                style={{margin: wp(1)}}
-              />
-            </TouchableOpacity>
-
-            <View style={{flex: 1}}>
-              <Main_Inout
-                value={search}
-                onChangeText={search => this.setState({search})}
-                backgroundColor={colorSchemeText}
-                placeholder={L.search}
-                borderRadius={wp(3)}
-                height={hp(5)}
-                placeholderTextColor={gray_color}
-                color={colorSchemeView}
-                left={
-                  <Icon
-                    type={'Feather'}
-                    name={'search'}
-                    size={wp(3.5)}
-                    color={colorSchemeView}
-                    style={{marginEnd: wp(1)}}
-                  />
-                }
-              />
-            </View>
-          </View>
-        </View>
-
         <ScrollView showsVerticalScrollIndicator={false}>
           <Snap_Carousel />
 
@@ -430,7 +394,7 @@ class Home extends Component {
           </View>
 
           <FlatList
-            data={DATA}
+            data={Data}
             // style={{paddingStart: wp(2)}}
             keyExtractor={(item, index) => index.toString()}
             numColumns={2}

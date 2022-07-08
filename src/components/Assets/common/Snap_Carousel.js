@@ -9,6 +9,7 @@ import {
   FlatList,
   Animated,
 } from 'react-native';
+import {colorSchemeText} from '../../../App';
 import {gray_color, hp, Red_color, white_color, wp} from '../style/startStyles';
 
 let CurrentSlide = 0;
@@ -132,7 +133,7 @@ class Snap_Carousel extends Component {
               outputRange: [
                 gray_color,
                 gray_color,
-                white_color,
+                colorSchemeText,
                 gray_color,
                 gray_color,
               ],

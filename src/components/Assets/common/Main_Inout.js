@@ -49,7 +49,7 @@ const Main_Inout = ({
 }) => {
   const [isFocused, setFocused] = React.useState(false);
   return (
-    <View style={{marginTop: marginTop ? marginTop : 0}}>
+    <View style={{marginTop: marginTop ? marginTop : 0, flex: 1}}>
       <View
         style={{
           flexDirection: flexDirection ? flexDirection : 'row',

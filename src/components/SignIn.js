@@ -33,7 +33,7 @@ class SignIn extends Component {
             <Text
               style={[
                 startStyles.introSmall,
-                {color: colorSchemeText, marginVertical: hp(2)},
+                {color: colorSchemeText, margin:hp(2)},
               ]}
             >
               {'Shopping App'}

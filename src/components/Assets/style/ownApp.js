@@ -4,7 +4,14 @@ import {
   widthPercentageToDP,
   heightPercentageToDP,
 } from 'react-native-responsive-screen';
-import {gray_color, light_gray_color} from './startStyles';
+import {
+  black_color,
+  gold_color,
+  gray_color,
+  Green_color,
+  light_gray_color,
+  white_color,
+} from './startStyles';
 
 export const wp = widthPercentageToDP;
 export const hp = heightPercentageToDP;
@@ -80,6 +87,25 @@ const ownApp = StyleSheet.create({
   },
 
   //SIGNIN
+  buttonViewSignIn_1: {
+    backgroundColor: Secondary_color,
+    width: wp(15),
+    height: wp(15),
+    borderRadius: wp(15 / 2),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonViewSignIn_2: {
+    borderRadius: wp(5),
+    borderWidth: wp(0.3),
+    padding: wp(1),
+    borderColor: black_color,
+  },
+  imageViewSignIn: {
+    width: wp(5),
+    height: wp(5),
+    tintColor: black_color,
+  },
   welcomeView: {
     alignSelf: 'center',
     alignItems: 'center',
@@ -110,7 +136,25 @@ const ownApp = StyleSheet.create({
   },
 
   //SIGNUP
-
+  buttonViewSignUp_1: {
+    backgroundColor: Secondary_color,
+    width: wp(15),
+    height: wp(15),
+    borderRadius: wp(15 / 2),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonViewSignUp_2: {
+    borderRadius: wp(5),
+    borderWidth: wp(0.3),
+    padding: wp(1),
+    borderColor: black_color,
+  },
+  imageViewSignUp: {
+    width: wp(5),
+    height: wp(5),
+    tintColor: black_color,
+  },
   termsIconView: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -315,6 +359,165 @@ const ownApp = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: wp(2),
+  },
+  itemsCategoryView: {
+    width: wp(17),
+    marginHorizontal: wp(3),
+    alignItems: 'center',
+    marginVertical: wp(3),
+  },
+  imageItemCategory: {
+    width: wp(17),
+    height: wp(17),
+    resizeMode: 'cover',
+    borderRadius: wp(3),
+  },
+
+  //Item
+  carousel_item: {
+    width: wp(100),
+    height: hp(35),
+    resizeMode: 'cover',
+  },
+  iconsView: {
+    marginVertical: wp(3),
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  addCartView: {
+    width: wp(10),
+    height: wp(10),
+    borderRadius: wp(10 / 2),
+    elevation: wp(2),
+    backgroundColor: light_gray_color,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  addCartImage: {
+    width: wp(6),
+    height: wp(6),
+    resizeMode: 'contain',
+    marginStart: wp(-1),
+  },
+  checkCartImage: {
+    marginStart: wp(-1),
+    width: wp(6),
+    height: wp(6),
+    resizeMode: 'contain',
+    tintColor: Green_color,
+  },
+  shareImage: {
+    marginStart: wp(-0.5),
+    width: wp(5),
+    height: wp(5),
+    resizeMode: 'contain',
+    tintColor: black_color,
+  },
+  viewRadiusItem: {
+    marginTop: hp(-5),
+    borderTopRightRadius: hp(3),
+    borderTopLeftRadius: hp(3),
+  },
+  brand_sec: {flexDirection: 'row', marginVertical: hp(0.8)},
+  specifiView: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    marginStart: wp(2),
+    overflow: 'hidden',
+  },
+  youMayrenderItem: {
+    elevation: wp(2),
+    height: wp(50),
+    margin: wp(2),
+    borderRadius: wp(2),
+    shadowOffset: {
+      height: wp(2),
+      width: wp(2),
+    },
+  },
+  youMayImage: {
+    borderTopLeftRadius: wp(2),
+    borderTopRightRadius: wp(2),
+    height: wp(30),
+    resizeMode: 'contain',
+  },
+  dis_ratYou_mayView: {
+    position: 'absolute',
+    backgroundColor: Green_color,
+    alignSelf: 'flex-end',
+    marginTop: wp(2),
+    padding: wp(0.5),
+    borderTopStartRadius: wp(0.8),
+    borderBottomStartRadius: wp(0.8),
+  },
+  salryYouMay: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: wp(0.5),
+  },
+  dis_view_youMay: {
+    marginVertical: wp(0.5),
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    textDecorationLine: 'line-through',
+  },
+  salryItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  dis_ratItemView: {
+    backgroundColor: Green_color,
+    alignSelf: 'center',
+    padding: wp(1),
+    borderTopStartRadius: wp(0.8),
+    borderBottomStartRadius: wp(0.8),
+  },
+  ratingItemView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  renderItemRat: {
+    borderWidth: 0.3,
+    width: wp(75),
+    height: wp(20),
+    margin: wp(2),
+    borderRadius: wp(2),
+    flexDirection: 'row',
+    paddingHorizontal: wp(2),
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  ren_itemImageView: {
+    width: wp(15),
+    height: wp(15),
+    borderRadius: wp(15 / 2),
+    elevation: wp(1),
+  },
+  ren_itemImageRat: {
+    width: wp(15),
+    height: wp(15),
+    borderRadius: wp(15 / 2),
+  },
+  ren_sec_itemDetil: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  ernStarItemView: {
+    marginVertical: wp(1),
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+
+  //PROFILE
+  registerView: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginVertical: wp(2),
+    marginTop: hp(5),
   },
 });
 export default ownApp;

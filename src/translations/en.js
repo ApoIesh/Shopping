@@ -45,4 +45,8 @@ export default {
   for_him: 'For Him',
 
   Notifications: 'Notifications',
+
+  specifications: 'Specifications',
+  you_may: 'You may also like',
+  rating: 'Rating',
 };

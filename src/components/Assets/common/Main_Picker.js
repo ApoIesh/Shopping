@@ -6,9 +6,17 @@ import {
   ScrollView,
   SafeAreaView,
   Modal,
+  Image,
+  ImageBackground,
 } from 'react-native';
+import {colorSchemeText, colorSchemeView} from '../../../App';
 import {L} from '../../../config';
-import textsStyles, {border_Color, hp, wp} from '../style/startStyles';
+import textsStyles, {
+  black_color,
+  border_Color,
+  hp,
+  wp,
+} from '../style/startStyles';
 import Icon from './Icon';
 
 const Main_Picker = ({
@@ -17,15 +25,23 @@ const Main_Picker = ({
   placeholder,
   borderBottomWidth,
   borderColor,
+  imagesData,
 }) => {
+  console.log(props);
   const [data, setData] = useState(`${placeholder}`);
+  const [image, setImage] = useState(
+    '//upload.wikimedia.org/wikipedia/commons/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg',
+  );
   const [isModalVisible, setisModalVisible] = useState(false);
 
-  const selectData = data
-    ? data.length >= 10
-      ? data?.slice('', 10) + '...'
-      : data
-    : placeholder;
+  const selectData =
+    imagesData === true
+      ? data
+      : imagesData === false
+      ? data.length >= 10
+        ? data?.slice('', 10) + '...'
+        : data
+      : placeholder;
 
   const changeModalVisible = bool => {
     setisModalVisible(bool);
@@ -34,6 +50,7 @@ const Main_Picker = ({
   const onPressItem = res => {
     setisModalVisible(false);
     setData(res);
+    setImage(res);
   };
 
   const sorted = props.sort(function (a, b) {
@@ -46,10 +63,18 @@ const Main_Picker = ({
     return (
       <TouchableOpacity
         key={index}
-        onPress={() => onPressItem(item.currency)}
+        onPress={() =>
+          onPressItem(imagesData === true ? item.file_url : item.alpha3)
+        }
         style={{height: wp(10), width: wp(100)}}
       >
-        <Text style={{fontSize: wp(4.1), color: '#fff', textAlign: 'center'}}>
+        <Text
+          style={{
+            fontSize: wp(4.1),
+            color: colorSchemeView,
+            textAlign: 'center',
+          }}
+        >
           {item.name}
         </Text>
       </TouchableOpacity>
@@ -63,16 +88,38 @@ const Main_Picker = ({
           style={{
             borderBottomWidth: borderBottomWidth ? borderBottomWidth : 0,
             borderColor: borderColor ? borderColor : border_Color,
-            flexDirection: 'row',
+            // flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
           }}
         >
-          <Text style={textsStyles.bold_12_gray}>{selectData}</Text>
+          <ImageBackground
+            source={{
+              uri:
+                '//upload.wikimedia.org/wikipedia/commons/c/cd/Flag_of_Afghanistan_%282013%E2%80%932021%29.svg',
+            }}
+            style={{
+              width: wp(8),
+              height: wp(8),
+              borderWidth: 1,
+            }}
+          />
+          {imagesData === true ? (
+            <ImageBackground
+              source={{uri: selectData}}
+              style={{
+                width: wp(8),
+                height: wp(8),
+                borderWidth: 0.2,
+              }}
+            />
+          ) : (
+            <Text style={textsStyles.bold_12_gray}>{selectData}</Text>
+          )}
           <Icon
             type={'AntDesign'}
             name={isModalVisible == false ? 'caretup' : 'caretdown'}
-            color={'#fff'}
+            color={colorSchemeText}
             style={{marginStart: wp(3)}}
           />
         </View>
@@ -93,7 +140,7 @@ const Main_Picker = ({
               width: wp(100),
               height: hp(20),
               alignSelf: 'center',
-              backgroundColor: '#000',
+              backgroundColor: colorSchemeText,
               borderTopStartRadius: hp(2.5),
               borderTopEndRadius: hp(2.5),
             }}
@@ -109,7 +156,7 @@ const Main_Picker = ({
               }}
             >
               <View />
-              <Text style={{color: '#fff', alignSelf: 'flex-end'}}>
+              <Text style={{color: colorSchemeView, alignSelf: 'flex-end'}}>
                 {L.close}
               </Text>
             </TouchableOpacity>
@@ -120,7 +167,7 @@ const Main_Picker = ({
               {props ? (
                 option
               ) : (
-                <Text style={{color: '#fff', alignSelf: 'center'}}>
+                <Text style={{color: colorSchemeView, alignSelf: 'center'}}>
                   check connection
                 </Text>
               )}

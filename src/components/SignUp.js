@@ -68,8 +68,7 @@ class SignUp extends Component {
               startStyles.extraBold_18_gray,
               {
                 color: colorSchemeText,
-                marginStart: wp(4),
-                marginBottom: hp(3),
+                margin: hp(2),
               },
             ]}
           >

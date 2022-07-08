@@ -83,7 +83,7 @@ class Intro extends Component {
         {activeSlide > 0 ? (
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => navigate('SignIn')}
+            onPress={() => navigate('TabComponent')}
           >
             <View style={ownApp.button_intro_view_skip}>
               <View style={ownApp.button_intro_view_skipTop}>
@@ -142,7 +142,7 @@ class Intro extends Component {
         <View style={{marginVertical: wp(5)}}>
           <View style={ownApp.button_intro_view_2}>
             {activeSlide == 0 ? (
-              <TouchableOpacity onPress={() => navigate('SignIn')}>
+              <TouchableOpacity onPress={() => navigate('TabComponent')}>
                 <View style={ownApp.button_intro_view_skipButtom}>
                   <Text
                     style={[
@@ -189,7 +189,7 @@ class Intro extends Component {
                 if (activeSlide == 0 || activeSlide != 2) {
                   this.carousel.snapToNext();
                 } else if (activeSlide == 2) {
-                  navigate('SignIn');
+                  navigate('TabComponent');
                 }
               }}
             >

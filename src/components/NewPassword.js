@@ -31,29 +31,27 @@ class NewPassword extends Component {
     return (
       <View style={{flex: 1, backgroundColor: colorSchemeView}}>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={ownApp.welcomeView}>
+            <Text
+              style={[
+                startStyles.introSmall,
+                {color: colorSchemeText, marginVertical: hp(2)},
+              ]}
+            >
+              {'Shopping App'}
+            </Text>
+          </View>
           <Text
             style={[
               startStyles.extraBold_18_gray,
               {
                 color: colorSchemeText,
-                marginStart: wp(5),
-                marginTop: hp(5),
+               margin:hp(2)
               },
             ]}
           >
             {L.forgetPassword}
           </Text>
-          <Image
-            source={require('./Assets/image/mska-removebg-preview.png')}
-            style={{
-              alignSelf: 'center',
-              width: wp(40),
-              height: wp(40),
-              resizeMode: 'contain',
-              marginVertical: hp(5),
-              tintColor: colorSchemeText,
-            }}
-          />
 
           <View style={startStyles.view_92}>
             <Main_Inout
